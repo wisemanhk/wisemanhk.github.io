@@ -1,0 +1,146 @@
+getPosmsJSON({
+   "status":0,
+   "data":{
+      "categories":[
+         {
+            "posm_category_id":"9",
+            "posm_category_name":"Glorifier"
+         },
+         {
+            "posm_category_id":"10",
+            "posm_category_name":"Sensormatic"
+         },
+         {
+            "posm_category_id":"11",
+            "posm_category_name":"L-tray"
+         },
+         {
+            "posm_category_id":"14",
+            "posm_category_name":"KA Center"
+         }
+      ],
+      "posms":[
+         {
+            "id":"35",
+            "posm_category_id":"9",
+            "client_id":"1",
+            "posm_name":"360 Charcoal Gold Glorifier Display",
+            "ka_name":"WTS",
+            "pn_code":"PN0000785",
+            "sorting":null,
+            "date_created":"2015-06-06 01:38:37",
+            "date_modified":"2015-06-06 01:38:37"
+         },
+         {
+            "id":"40",
+            "posm_category_id":"9",
+            "client_id":"1",
+            "posm_name":"OW 3D Display",
+            "ka_name":"MNG",
+            "pn_code":"PN0000857",
+            "sorting":null,
+            "date_created":"2015-06-24 13:23:15",
+            "date_modified":"2015-06-24 13:23:15"
+         },
+         {
+            "id":"41",
+            "posm_category_id":"9",
+            "client_id":"1",
+            "posm_name":"SS Charcoal Gold",
+            "ka_name":"WTS",
+            "pn_code":"PN0000913",
+            "sorting":null,
+            "date_created":"2015-07-02 17:02:56",
+            "date_modified":"2015-07-02 17:02:56"
+         },
+         {
+            "id":"42",
+            "posm_category_id":"9",
+            "client_id":"1",
+            "posm_name":"Optic White Glorifier Display",
+            "ka_name":"WTS",
+            "pn_code":"PN0000827",
+            "sorting":null,
+            "date_created":"2015-07-02 17:05:31",
+            "date_modified":"2015-07-07 12:50:34"
+         },
+         {
+            "id":"49",
+            "posm_category_id":"9",
+            "client_id":"1",
+            "posm_name":"Tri-Tip 3D Display",
+            "ka_name":"WTS",
+            "pn_code":"PN0000773",
+            "sorting":null,
+            "date_created":"2015-09-11 12:54:16",
+            "date_modified":"2015-09-11 12:54:16"
+         },
+         {
+            "id":"50",
+            "posm_category_id":"9",
+            "client_id":"1",
+            "posm_name":"OW ACTIS pen",
+            "ka_name":"WTS",
+            "pn_code":"PN0000997",
+            "sorting":null,
+            "date_created":"2015-10-26 14:34:15",
+            "date_modified":"2015-10-26 14:34:15"
+         },
+         {
+            "id":"34",
+            "posm_category_id":"10",
+            "client_id":"1",
+            "posm_name":"WTS Sensormatic",
+            "ka_name":"WTS",
+            "pn_code":"PN0000855",
+            "sorting":null,
+            "date_created":"2015-06-06 01:38:27",
+            "date_modified":"2015-06-06 01:38:27"
+         },
+         {
+            "id":"39",
+            "posm_category_id":"11",
+            "client_id":"3",
+            "posm_name":"Staff education program",
+            "ka_name":"MNG",
+            "pn_code":"PN0000731",
+            "sorting":null,
+            "date_created":"2015-06-08 13:16:17",
+            "date_modified":"2015-06-08 13:16:17"
+         },
+         {
+            "id":"47",
+            "posm_category_id":"11",
+            "client_id":"3",
+            "posm_name":"250ml & 125ml Gargling Ltray",
+            "ka_name":"WTS",
+            "pn_code":"PN0000666",
+            "sorting":null,
+            "date_created":"2015-08-12 17:37:34",
+            "date_modified":"2015-08-12 17:37:34"
+         },
+         {
+            "id":"48",
+            "posm_category_id":"11",
+            "client_id":"3",
+            "posm_name":"MNG 30ml Solution & spray L-tray",
+            "ka_name":"WTS",
+            "pn_code":"PN0000805",
+            "sorting":null,
+            "date_created":"2015-08-12 17:38:53",
+            "date_modified":"2015-08-12 17:38:53"
+         },
+         {
+            "id":"45",
+            "posm_category_id":"14",
+            "client_id":"6",
+            "posm_name":"Fortune Cold & Flu Center",
+            "ka_name":"WTS",
+            "pn_code":"PN0000435",
+            "sorting":null,
+            "date_created":"2015-07-16 17:00:50",
+            "date_modified":"2015-07-16 17:00:50"
+         }
+      ]
+   }
+});
