@@ -1,0 +1,14 @@
+#map {
+  height: 800px;
+}
+
+table {
+  border-collapse: collapse;
+  cellspacing: 10px;
+  cellpadding: 10px;
+  font-family: Arial;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
