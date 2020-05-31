@@ -1,4 +1,4 @@
-getPointsJSON({
+{
    "status":0,
    "data":{
       "points":[
@@ -9148,4 +9148,4 @@ getPointsJSON({
          }
       ]
    }
-});
+}
