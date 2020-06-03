@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>Receipt OCR Results</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="theDiv">
+results will be shown here:
+</div>
+
+
+<script language="JavaScript">
+<!--
+var rnd = Math.round(Math.random()*100000);
+var fncName = "getJsonp_"+ rnd;
+
+function doProcessJson(data) {
+	var ary = data.feed.entry;
+	
+	var html = "<table border=1>";
+	html += "<tr><td width=150><b>Scanned Date/Time</b></td><td><b>Receipt OCR Data</b></td></tr>";
+	
+	for(var i=0; i < ary.length; i++) {
+		var ts = ary[i].gsx$timestamp.$t;
+		var content = ary[i].gsx$content.$t;
+		
+		html += "<tr>";
+		html += "<td>"+ ts +"</td>";
+		html += "<td>"+ content +"</td>";
+		html += "</tr>";
+		
+	}
+	html += "</table>";
+	
+
+	var theDiv = document.getElementById("theDiv");
+	theDiv.innerHTML = html;
+	
+}
+eval(fncName +" = doProcessJson;");
+
+var url = "https://spreadsheets.google.com/feeds/list/13s8OwskhOj7ugvi9rpOyAnlssc-eitOtR7QOJkKphl0/1/public/values?alt=json-in-script&callback="+ fncName;
+
+var s = document.createElement("script");
+s.type = "text/javascript";
+s.src = url;
+
+document.getElementsByTagName("head")[0].append(s);
+//-->
+</script>
+
+
+</body>
+</html>
