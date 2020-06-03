@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>Receipt OCR Results</title>
-<meta http-equiv="refresh" content="30">
+<meta http-equiv="refresh" content="5">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,7 +22,7 @@ function doProcessJson(data) {
 	var html = "<table border=1>";
 	html += "<tr><td width=150><b>Scanned Date/Time</b></td><td><b>Receipt OCR Data</b></td></tr>";
 	
-	for(var i=0; i < ary.length; i++) {
+	for(var i=ary.length-1; i>=0 ; i--) {
 		var ts = ary[i].gsx$timestamp.$t;
 		var content = ary[i].gsx$content.$t;
 		
