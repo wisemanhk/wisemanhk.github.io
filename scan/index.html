@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Scan Receipt</title>
+<title>掃描收據</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/4.0.30/Dropbox-sdk.min.js"></script>
 </head>
 <body>
@@ -13,8 +13,10 @@
   <form onSubmit="return uploadFile()">
     <input type="hidden" id="access-token" placeholder="Access token" value="-0Orgjr7PCAAAAAAAAAAIXb9NpHSezFfJPwbwFOzHcpHpvJHMEocuJUCTUdmMH25" />
     <input type="file" id="file-upload" />
+    <br>
     <button type="submit">Submit</button>
   </form>
+  
   <!-- A place to show the status of the upload -->
   <h2 id="results"></h2>
   
