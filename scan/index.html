@@ -11,7 +11,6 @@
 <br>  
   
   <form onSubmit="return uploadFile()">
-    <input type="hidden" id="access-token" placeholder="Access token" value="-0Orgjr7PCAAAAAAAAAAI3oHtLcFfkQVMGbMcEcRIOc_U1wgNZgg1WeakyzBqPGn" />
     <input type="file" id="file-upload" />
     <br><br>
     <button type="submit">Submit</button>
@@ -29,7 +28,8 @@
     function uploadFile() {
         
       const UPLOAD_FILE_SIZE_LIMIT = 150 * 1024 * 1024;
-      var ACCESS_TOKEN = document.getElementById('access-token').value;
+      var ACCESS_TOKEN = '-0Orgjr7PCAAAAAAAAAAJmVK1PFEZLcRmnrl38D7gS7tAFSoDhbVMKzUroF0ktqr';
+      //var ACCESS_TOKEN = document.getElementById('access-token').value;
       var dbx = new Dropbox.Dropbox({ accessToken: ACCESS_TOKEN });
       var fileInput = document.getElementById('file-upload');
       var file = fileInput.files[0];
