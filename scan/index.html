@@ -29,6 +29,8 @@
         
       const UPLOAD_FILE_SIZE_LIMIT = 150 * 1024 * 1024;
       var ACCESS_TOKEN = '-0Orgjr7PCAAAAAAAAAAJmVK1PFEZLcRmnrl38D7gS7tAFSoDhbVMKzUroF0ktqr';
+      //"touch" this url:
+      //  https://www.dropbox.com/oauth2/authorize?response_type=token&redirect_uri=https://www.dropbox.com/1/oauth2/display_token&client_id=dkhvq9z5bb8hxy4
       //var ACCESS_TOKEN = document.getElementById('access-token').value;
       var dbx = new Dropbox.Dropbox({ accessToken: ACCESS_TOKEN });
       var fileInput = document.getElementById('file-upload');
