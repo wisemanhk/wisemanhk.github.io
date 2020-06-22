@@ -30,16 +30,21 @@ $(document).ready(function () {
         $.ajax(
             {
                 type:"POST",
-                url: "https://api.dropboxapi.com/2/auth/token/from_oauth1",
-		headers: {
-			'Authorization': 'Basic ZGtodnE5ejViYjhoeHk0OnZqYnprcms1cXp4eWVkZg==',
-			'Content-Type': 'application/json'
+                url: "https://api.dropboxapi.com/2/files/get_temporary_upload_link",
+								headers: {
+        					'Authorization': 'Bearer -0Orgjr7PCAAAAAAAAAANT4NwoYDIHcnu3veU_93bEt52sywjog0WHcnNMLarvMY',
+        					'Content-Type': 'application/json'
                 },
-                data: JSON.stringify({
-			'oauth1_token': 'dkhvq9z5bb8hxy4',
-			'oauth1_token_secret': 'vjbzkrk5qzxyedf'
-		}),
-		//datatype: "jsonp",
+                data: JSON.stringify(
+        					{'commit_info': {
+                  								'path': '/upload/test123.txt',
+                                  'mode': 'add',
+                                  'autorename': true,
+                                  'mute': false,
+                                  'strict_conflict': false
+                  }, 'duration': 3600}
+            		),
+        				//datatype: "jsonp",
                 success: function(data, textStatus, jqXHR) {HandleOathTokenSuccess(data, textStatus, jqXHR)},
                 error: function(jqXHR, textStatus, errorThrown) {OathTokenError(jqXHR, textStatus, errorThrown)}
              
