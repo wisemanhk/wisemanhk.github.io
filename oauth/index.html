@@ -30,11 +30,16 @@ $(document).ready(function () {
         $.ajax(
             {
                 type:"POST",
-                url: "https://api.dropboxapi.com/2/users/get_current_account",
-								headers: {
-        					'Authorization': 'Bearer -0Orgjr7PCAAAAAAAAAAM97PiSgTBNppziUXlx-4XDxCaf6VzPjK0fPANdzsS-Ry'
-                  },
-        				//datatype: "jsonp",
+                url: "https://api.dropboxapi.com/2/auth/token/from_oauth1",
+		headers: {
+			'Authorization': 'Basic ZGtodnE5ejViYjhoeHk0OnZqYnprcms1cXp4eWVkZg==',
+			'Content-Type': 'application/json'
+                },
+                data: JSON.stringify({
+			'oauth1_token': 'dkhvq9z5bb8hxy4',
+			'oauth1_token_secret': 'vjbzkrk5qzxyedf'
+		}),
+		//datatype: "jsonp",
                 success: function(data, textStatus, jqXHR) {HandleOathTokenSuccess(data, textStatus, jqXHR)},
                 error: function(jqXHR, textStatus, errorThrown) {OathTokenError(jqXHR, textStatus, errorThrown)}
              
