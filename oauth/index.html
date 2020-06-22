@@ -1,0 +1,51 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+
+<button id="btnGet">Get</button>
+<div id="msgdiv"></div>
+
+<script>
+function LogIt(msg) {
+    $("#msgdiv").append(msg + "<br/>");
+}
+
+function HandleOathTokenSuccess(data, textStatus, jqXHR)
+{
+        LogIt("worked");
+};
+
+function OathTokenError(jqXHR, textStatus, errorThrown)
+{
+    LogIt("call failed");
+};
+
+$(document).ready(function () {
+    LogIt("Start");
+    
+    $("#btnGet").click(function(){
+        
+        $.ajax(
+            {
+                type:"POST",
+                url: "https://api.dropboxapi.com/2/users/get_current_account",
+								headers: {
+        					'Authorization': 'Bearer -0Orgjr7PCAAAAAAAAAAMSIkA1JXa2o4l6I9kpk72Rj0vb0DLCJgNYOPO0_BQT2X'
+                  },
+        				//datatype: "jsonp",
+                success: function(data, textStatus, jqXHR) {HandleOathTokenSuccess(data, textStatus, jqXHR)},
+                error: function(jqXHR, textStatus, errorThrown) {OathTokenError(jqXHR, textStatus, errorThrown)}
+             
+            });
+         
+    });
+    
+    
+    LogIt("End");
+});
+</script>
+
+</body>
+</html>
