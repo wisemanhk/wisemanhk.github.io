@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Dropbox OAuth Helper</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="css/flat-ui.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="demo-headline" style="padding-bottom: 20px">
+        <h1 class="demo-logo">
+          Dropbox OAuth Helper
+          <small>Instant Gratification: Get a Token and Get Started!</small>
+        </h1>
+      </div> <!-- /demo-headline -->
+
+      <div class="row">
+        <div style="width: 806px; background-color:#edeff1; padding: 37px; margin: 0 auto;">
+          <p>To get your app key, browse to the <a href="https://www.dropbox.com/developers/apps">Dropbox App Console</a>. From there, create a new "Dropbox API app" or select an existing app. You'll find your app key there. Be sure to enter <code id="redirect_uri">https://dbxoauth2.site44.com</code> in the "OAuth 2 redirect URI" field.</p>
+          <p>Enter your app key into the text box below:</p>
+          <form style="margin-bottom:0">
+            <div class="control-group" style="margin-bottom:6px;position:relative;margin-left:150px">
+              <input type="text" style="font-size:17px;padding-top:11px;padding-bottom:11px;text-indent:3px;width:490px;margin-bottom:10px !important;" placeholder="Enter your app key" name="appkey" />
+              <label class="fui-check-inverted" style="position:absolute;right:163px;top:14px;font-size:16px;color:#1abc9c;display:none"></label>
+            </div>
+            <input type="submit" id="authenticate" class="btn btn-primary btn-block" style="margin: 0 150px;width:504px" disabled value="Log In With Your Account" />
+            <div id="result" class="hide">
+              <p>Your access token: <code class="access_token"></code></p>
+              <p>Sample usage with curl:</p>
+              <pre><code>curl -X PUT https://api-content.dropbox.com/1/files_put/auto/hello.txt?overwrite=false \
+     -H 'Authorization: Bearer <span class="access_token"></span>' \
+     -H 'Content-Type: text/plain' \
+     -d 'Hello, World!'</code></pre>
+              <button id="try" class="btn btn-primary btn-block" style="margin: 0 150px;width:504px">Try it now!</button>
+              <div id="success" class="hide">
+                <h1 class="text-center">File written successfully!</h1>
+                <p>Server response:</p>
+                <pre><code id="response"></code></pre>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    
+    <!-- Load JS here for greater good =============================-->
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+    <script src="js/flatui-checkbox.js"></script>
+    <script src="js/flatui-radio.js"></script>
+    <script src="js/jquery.tagsinput.js"></script>
+    <script src="js/jquery.placeholder.js"></script>
+    <script src="js/jquery.stacktable.js"></script>
+    <script src="js/application.js"></script>
+    <script src="superagent.js"></script>
+    <script src="jquery.cookie.js"></script>
+
+    <script>
+      $(function () {
+        function parseqs(text) {
+          var split = text.split('&');
+          var params = {};
+          for (var i = 0; i < split.length; i++) {
+            var kv = split[i].split('=', 2);
+            params[kv[0]] = kv[1];
+          }
+          return params;
+        }
+
+        function get_redirect_uri() {
+          return window.location.href.substring(0, window.location.href.length - window.location.hash.length).replace(/\/$/, '');
+        }
+
+        $('#redirect_uri').text(get_redirect_uri());
+
+        if (window.location.href.indexOf('http://') === 0 && window.location.host.indexOf('127.0.0.1') !== 0) {
+          window.location = window.location.href.replace('http://', 'https://');
+        }
+
+        $('input[name="appkey"]').val($.cookie('appkey'));
+
+        var access_token = null;
+        if (window.location.hash) {
+          var params = parseqs(window.location.hash.substring(1));
+          if (params.error) {
+            alert("ERROR " + params.error + ": " + params.error_description.replace(/\+/g, ' '));
+          } else {
+            access_token = parseqs(window.location.hash.substring(1)).access_token;
+            $('#authenticate').hide();
+            $('#result').show();
+            $('.appkey').text($('input[name="appkey"]').val());
+            $('.access_token').text(access_token);
+          }
+        }
+
+        $('#try').click(function (e) {
+          e.preventDefault();
+          $('#try').prop('disabled', true);
+          superagent
+            .put('https://api-content.dropbox.com/1/files_put/auto/hello.txt?overwrite=false')
+            .send('Hello, World!')
+            .set('Authorization', 'Bearer '+access_token)
+            .set('Content-Type', 'text/plain')
+            .end(function (res) {
+              if (res.status === 200) {
+                $('#try').hide();
+                $('#response').text(JSON.stringify(JSON.parse(res.text), undefined, 4));
+                $('#success').show();
+              }
+            });
+        });
+
+        var events = "input";
+        if (!("oninput" in document || "oninput" in $('<input>')[0])) {
+          events += " keypress keyup";
+        }
+
+        function validate() {
+          var valid = true;
+          $('form input[type="text"]').each(function () {
+            if ($(this).val().length === 15) {
+              $(this).closest('.control-group').toggleClass('success', true).find('label').show();
+            } else {
+              valid = false;
+              $(this).closest('.control-group').toggleClass('success', false);
+            }
+          });
+          $('#authenticate').prop('disabled', !valid);
+        }
+        $('input[type="text"]').bind(events, validate);
+        validate();
+
+        $('#authenticate').click(function (e) {
+          e.preventDefault();
+          window.location = 'https://www.dropbox.com/1/oauth2/authorize?client_id='
+            + encodeURIComponent($('input[name="appkey"]').val())
+            + '&response_type=token&redirect_uri=' + encodeURIComponent(get_redirect_uri());
+          $.cookie('appkey', $('input[name="appkey"]').val());
+        });
+      });
+    </script>
+
+  </body>
+</html>
