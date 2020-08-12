@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>I'm READY campaign</title>
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+<script src="qrcode.js"></script>
+
+</head>
+<body>
+
+<img src='img/banner.jpg' style='position:absolute;top:0px;left:0px;z-Index:-1;'>
+<img src='img/logo.jpg' width='300' style='position:absolute;top:10px;left:10px;z-Index:2;'>
+<img src='img/applejuice.jpg' width='150' style='position:absolute;top:300px;left:50px;z-Index:3;'>
+
+
+<div style='position:absolute;top:310px;left:220px;z-Index:999;'>
+	<form name='campaign' action='thanks.html' method='POST' onSubmit='doSubmit(this);'> 
+		<table border=0 width=600 cellpadding=5 cellspacing=5 style='font-family:Helvetica;'>
+			<tr><td colspan=2 style='font-size:15pt;font-weight:bold;'>
+			Please show this QRCode to our staff.
+			
+			<br><br>
+			
+			<div id="qrcode"></div>
+
+			
+			</td></tr>
+		</table>
+	</form>
+</div>
+
+<script type="text/javascript">
+var pos = location.href.lastIndexOf('#');
+var uuid = location.href.substring(pos+1);
+
+new QRCode(document.getElementById("qrcode"), uuid);
+</script>
+
+</body>
+</html>
