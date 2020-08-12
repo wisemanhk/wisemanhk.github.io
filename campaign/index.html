@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>I'm READY campaign</title>
+<title>For my HK, We are READY~</title>
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
 </head>
 <body>
@@ -15,7 +15,7 @@
 	<form name='campaign' action='thanks.html' method='GET' onSubmit='doSubmit(this);'> 
 		<table border=0 width=600 cellpadding=5 cellspacing=5 style='font-family:Helvetica;'>
 			<tr><td colspan=2 style='font-size:15pt;font-weight:bold;'>
-			I am READY. r u READY. campaign
+			For my HK, We are READY~ campaign
 			<br><br>
 			</td></tr>
 		
@@ -40,28 +40,45 @@
 			<span style='font-size:8pt;color:red;'>(＊)</span>
 			</td></tr>
 			
+			<tr><td>&nbsp;</td><td>
+			<span style='font-size:9pt;'>
+			<i>Required fields are indicated with a </i>
+			"</span><span style='color:red;font-size:8pt;'>(＊)</span><span style='font-size:9pt;'><i>" .</i></span>
+			</td></tr>
+			
 			<tr><td colspan=2>
 			
-			<span style='font-size:8pt;color:red;'>(＊)
-			are required fields.</span>
-			<br><br>
-			
-			<input type='checkbox' CHECKED>
-			<span style='font-size:10pt;'>
-			I agree collection of personal data will be used for .... blah blah blah.... and only for.... blah blah...
-			<a href='#'>Privacy Policy</a>
-			<br><br>
-			<input type='checkbox' CHECKED>
-			After signing up for the newsletter, you will also receive occasional surveys and special offers from WHATEVER media and our partners via email.
-			We will not sell or distribute your phone and email address to any third party at any time.
-			</span>
-			<br><br>
+				<!-- DISCLAIMER 1 -->
+				<table border=0><tr>
+				<td width=30>
+					<input type='checkbox' CHECKED>
+				</td>
+				<td>
+					<span style='font-size:10pt;'>
+					I agree collection of personal data will be used for .... blah blah blah.... and only for.... blah blah...
+					<a href='#'>Privacy Policy</a></span>
+				</td>
+				</tr></table>
+				
+				<br>
+				
+				<!-- DISCLAIMER 2 -->
+				<table border=0><tr>
+				<td width=30>
+					<input type='checkbox' CHECKED>
+				</td>
+				<td>
+					<span style='font-size:10pt;'>
+					After signing up for the newsletter, you will also receive occasional surveys and special offers from WHATEVER media and our partners via email.
+					We will not sell or distribute your phone and email address to any third party at any time.</span>
+				</td>
+				</tr></table>
+					
+				<br>
 
-			&nbsp;   
-			<input type=submit>
-			<br><br>
+				<input type=submit value='SUBMIT' style='width:150px;height:75px;'>
 
-			<img width=280 src='https://developers.google.com/recaptcha/images/newCaptchaAnchor.gif'>
+				<img valign='bottom' width=280 src='img/googlecaptcha.gif'>
 			</td></tr>
 			
 		</table>

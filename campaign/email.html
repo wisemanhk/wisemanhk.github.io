@@ -1,28 +1,31 @@
 <html>
 <head>
-<title>I'm READY campaign</title>
+<title>For my HK, We are READY~</title>
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
-<script src="qrcode.js"></script>
+<script src="qrcode.min.js"></script>
 
 </head>
 <body>
 
 <img src='img/banner.jpg' style='position:absolute;top:0px;left:0px;z-Index:-1;'>
 <img src='img/logo.jpg' width='300' style='position:absolute;top:10px;left:10px;z-Index:2;'>
-<img src='img/applejuice.jpg' width='150' style='position:absolute;top:300px;left:50px;z-Index:3;'>
+<img src='img/crlogo.png' width='150' style='position:absolute;top:10px;left:330px;z-Index:3;'>
+<img src='img/applejuice.jpg' width='150' style='position:absolute;top:300px;left:50px;z-Index:4;'>
 
 
 <div style='position:absolute;top:310px;left:220px;z-Index:999;'>
 	<form name='campaign' action='thanks.html' method='POST' onSubmit='doSubmit(this);'> 
 		<table border=0 width=600 cellpadding=5 cellspacing=5 style='font-family:Helvetica;'>
 			<tr><td colspan=2 style='font-size:15pt;font-weight:bold;'>
+			請到時候帶同此電郵，出示給在場職員掃描 QR碼。
+			<br>
 			Please show this QRCode to our staff.
 			
 			<br><br>
 			
+			<!-- QR Code here -->
 			<div id="qrcode"></div>
-
-			
+			<img width=38 style='position:absolute;top:176px;left:124px;' src='img/crlogo.png'>
 			</td></tr>
 		</table>
 	</form>
@@ -32,7 +35,19 @@
 var pos = location.href.lastIndexOf('#');
 var uuid = location.href.substring(pos+1);
 
-new QRCode(document.getElementById("qrcode"), uuid);
+if(pos>0 && uuid.charAt(0)=='-') {
+	//new QRCode(document.getElementById("qrcode"), uuid); //simple
+
+	var qrcode = new QRCode(document.getElementById("qrcode"), {
+		text: uuid,
+		width:  256,
+		height: 256,
+		colorDark  : "#000000",
+		colorLight : "#ffffff",
+		correctLevel : QRCode.CorrectLevel.H  
+		// Usage >> L:1,M:0,Q:3,H:2
+	});
+}
 </script>
 
 </body>

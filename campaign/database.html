@@ -1,84 +1,85 @@
 <html>
 <head>
-<title>I'm READY campaign</title>
+<title>For my HK, We are READY~</title>
+<style>
+table, tr, td {
+  border: 1px solid black;
+}
+</style>
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
 </head>
 <body>
 
 <img src='img/banner.jpg' style='position:absolute;top:0px;left:0px;z-Index:-1;'>
 <img src='img/logo.jpg' width='300' style='position:absolute;top:10px;left:10px;z-Index:2;'>
-<img src='img/applejuice.jpg' width='150' style='position:absolute;top:300px;left:50px;z-Index:3;'>
-
+<img src='img/crlogo.png' width='150' style='position:absolute;top:10px;left:330px;z-Index:3;'>
+<img src='img/applejuice.jpg' width='150' style='position:absolute;top:300px;left:50px;z-Index:4;'>
 
 <div id='content' style='position:absolute;top:310px;left:220px;z-Index:999;'>
-	<table id='tbl' border=1 cellpadding=1 cellspacing=2 style='font-family:Helvetica;'>
+	<table id='tbl' cellspacing=5 cellpadding=5 style='border:1px solid black; border-collapse:collapse; font-family:Helvetica;font-size:9pt;'>
 	<tr style='font-weight:bold;'>
 		<td>Firebase ID</td>
 		<td>UUID</td>
 		<td><nobr>Client Name</nobr></td>
 		<td><nobr>Email Address</nobr></td>
-		<td>Phone No.</td>
+		<td><nobr>Phone No.</nobr></td>
 		<td>Position</td>
 		<td><nobr>Registration Date/Time</nobr></td>
 		<td><nobr>Email Sent?</nobr></td>
+		<td><nobr>IP Address</nobr></td>
+		<td>GeoLocatoin</td>
+		<td>GPS</td>
+		<td><nobr>Browser Agent</nobr></td>
+		<td><nobr>Phone Model</nobr></td>
 	</tr>
 	</table>
 </div>
 
 <script language='JavaScript'>
 <!--
-// TODO: Replace with your project's config object. You can find this
-// by navigating to your project's console overview page
-// (https://console.firebase.google.com/project/your-project-id/overview)
-// and clicking "Add Firebase to your web app"
-
 var config = {
   apiKey: "AIzaSyBfHe8GEKRrCM5TA_MqlaZZsVshjjH7Q34",
   authDomain: "my-test-project-d5a38.firebaseapp.com",
   databaseURL: "https://my-test-project-d5a38.firebaseio.com",
   storageBucket: "my-test-project-d5a38.appspot.com",
 };
-
-// Initialize your Firebase app
 firebase.initializeApp(config);
 
-//read the count
 firebase.database().ref('campaigndb').on('value',(snap)=>{
+	//read the count (for pagination if needed)
     var totalRecord =  snap.numChildren();
     //alert("Total Record : "+totalRecord);
   });
 
 //===================================================
-
 var r = 1;
 
- firebase.database().ref('campaigndb').once('value',   function(snapshot) {
+ firebase.database().ref('campaigndb').once('value', function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
-      var childKey = childSnapshot.key;
-      var childData = childSnapshot.val();
+		var childKey = childSnapshot.key;
+		var childData = childSnapshot.val();
+	
+		var tbl = document.getElementById('tbl');
+		var row = tbl.insertRow(r);
+		var cells = new Array(13);
+		for(var i=0; i < cells.length; i++) 
+			cells[i] = row.insertCell(i);
+	
+		cells[0].innerHTML = '<nobr>'+childKey+'</nobr>';
+		cells[1].innerHTML = childData._id;
+		cells[2].innerHTML = childData.name;
+		cells[3].innerHTML = childData.email;
+		cells[4].innerHTML = childData.tel;
+		cells[5].innerHTML = '(n/a)';
+		cells[6].innerHTML = '12:30 1/8/2020';
+		cells[7].innerHTML = '<center><a href="email.html#'+ childKey +'">QR</a></center>';
+		cells[8].innerHTML = '127.0.0.1';
+		cells[9].innerHTML = 'Kowloon';
+		cells[10].innerHTML = '24.123,22.123';
+		cells[11].innerHTML = 'Chrome/Safari';
+		cells[12].innerHTML = '(iPhone11/Android';
 
-	  var tbl = document.getElementById('tbl');
-	  var row = tbl.insertRow(r);
-
-	  var cell1 = row.insertCell(0);
-	  var cell2 = row.insertCell(1);
-	  var cell3 = row.insertCell(2);
-	  var cell4 = row.insertCell(3);
-	  var cell5 = row.insertCell(4);
-	  var cell6 = row.insertCell(5);
-	  var cell7 = row.insertCell(6);
-	  var cell8 = row.insertCell(7);
-
-	  cell1.innerHTML = childKey;
-	  cell2.innerHTML = childData._id;
-	  cell3.innerHTML = childData.name;
-	  cell4.innerHTML = childData.email;
-	  cell5.innerHTML = childData.tel;
-	  cell6.innerHTML = '(n/a)';
-	  cell7.innerHTML = '12:30 1/8/2020';
-	  cell8.innerHTML = '<a href="email.html#'+ childKey +'">QR</a>';
-
-	  r ++;
+		r ++;
     });
   });
 //-->
