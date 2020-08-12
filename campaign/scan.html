@@ -78,7 +78,16 @@
       canvas.stroke();
     }
 
-    // Use facingMode: environment to attemt to get the front camera on phones
+	/*
+	flipCamera = () => {
+		navigator.mediaDevices
+			.getUserMedia(constraints)
+			.then(stream => stream.getTracks().forEach(track => track.stop()))
+			.then(() => this.setState(prevState => ({ isFacingMode: !prevState.isFacingMode })));
+	};	
+	*/
+
+    //Use facingMode: environment to attemt to get the front camera on phones (user/environment)
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
       video.srcObject = stream;
       video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
@@ -101,6 +110,7 @@
           inversionAttempts: "dontInvert",
         });
         if (code) {
+alert(code.data);		
           drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
           drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
           drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
