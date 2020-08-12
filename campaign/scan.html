@@ -58,7 +58,7 @@
   <canvas id="canvas" hidden></canvas>
   <div id="output" hidden>
     <div id="outputMessage">No QR code detected.</div>
-    <div hidden><b>Data:</b> <span id="outputData"></span></div>
+    <div hidden><b>User Code:</b> <span id="outputData"></span></div>
   </div>
   <script>
     var video = document.createElement("video");
@@ -95,8 +95,6 @@
       requestAnimationFrame(tick);
     });
 
-	var count = 0;
-
     function tick() {
       loadingMessage.innerText = "⌛ Loading video..."
       if (video.readyState === video.HAVE_ENOUGH_DATA) {
@@ -112,7 +110,6 @@
           inversionAttempts: "dontInvert",
         });
         if (code) {
-		  if(count>10000) alert(code.data);		
           drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
           drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
           drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
@@ -121,11 +118,10 @@
           outputData.parentElement.hidden = false;
           outputData.innerText = code.data;
         } else {
-          outputMessage.hidden = false;
+          //outputMessage.hidden = false;
           outputData.parentElement.hidden = true;
         }
       }
-	  count ++;
       requestAnimationFrame(tick);
     }
   </script>
