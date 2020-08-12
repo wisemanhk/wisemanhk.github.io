@@ -1,7 +1,6 @@
 <html>
 <head>
 <title>I'm READY campaign</title>
-<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
 </head>
 <body>
 
@@ -21,52 +20,6 @@
 		</table>
 	</form>
 </div>
-
-<script language='JavaScript'>
-<!--
-// TODO: Replace with your project's config object. You can find this
-// by navigating to your project's console overview page
-// (https://console.firebase.google.com/project/your-project-id/overview)
-// and clicking "Add Firebase to your web app"
-
-var config = {
-  apiKey: "AIzaSyBfHe8GEKRrCM5TA_MqlaZZsVshjjH7Q34",
-  authDomain: "my-test-project-d5a38.firebaseapp.com",
-  databaseURL: "https://my-test-project-d5a38.firebaseio.com",
-  storageBucket: "my-test-project-d5a38.appspot.com",
-};
-
-// Initialize your Firebase app
-firebase.initializeApp(config);
-
-// Reference to your entire Firebase database
-var myFirebase = firebase.database().ref();
-
-// Get a reference to the recommendations object of your Firebase.
-// Note: this doesn't exist yet. But when we write to our Firebase using
-// this reference, it will create this object for us!
-var db = myFirebase.child("campaigndb");
-
-// Push our first recommendation to the end of the list and assign it a
-// unique ID automatically.
-
-function doSubmit(frm) {
-	var milliseconds = new Date().getTime();
-	var rng1 = Math.floor(Math.random()*10);
-	var rng2 = Math.floor(Math.random()*10);
-	var rng3 = Math.floor(Math.random()*10);
-	var rng = (rng1+'_'+rng2+'_'+rng3).split('_').join('');
-	var myid = 'uuid'+milliseconds +'_'+ rng;
-	db.push({
-		"_id": myid,  // <-- change these values to see effect
-		"name": frm.name.value,
-		"tel":  frm.tel.value,
-		"email": frm.email.value
-	});	
-	return true;
-}
-//-->
-</script>
 
 </body>
 </html>
