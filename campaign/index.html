@@ -2,6 +2,7 @@
 <head>
 <title>For my HK, We are READY~</title>
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <body>
 
@@ -39,6 +40,21 @@
 			<input type='text' name='email'>
 			<span style='font-size:8pt;color:red;'>(＊)</span>
 			</td></tr>
+
+			<tr><td>
+			Position:
+			</td><td>
+			<select name="position">
+				<option value="-">----------------------</option>
+				<option value="m">Management</option>
+				<option value="d">Doctor</option>
+				<option value="n">Nurse</option>
+				<option value="p">Pharmacist</option>
+				<option value="r">Radiologist</option>
+				<option value="y">Physiotherapist</option>
+				<option value="o">Others</option>
+			</select>			
+			</td></tr>
 			
 			<tr><td>&nbsp;</td><td>
 			<span style='font-size:9pt;'>
@@ -49,36 +65,34 @@
 			<tr><td colspan=2>
 			
 				<!-- DISCLAIMER 1 -->
-				<table border=0><tr>
-				<td width=30>
-					<input type='checkbox' CHECKED>
-				</td>
-				<td>
-					<span style='font-size:10pt;'>
-					I agree collection of personal data will be used for .... blah blah blah.... and only for.... blah blah...
-					<a href='#'>Privacy Policy</a></span>
-				</td>
-				</tr></table>
+				<table border=0><tr><td width=30>
+				<input type='checkbox' CHECKED>
+				</td><td>
+				<span style='font-size:10pt;'>I agree collection of 
+				personal data will be used for .... blah blah blah.... 
+				and only for.... blah blah...<a href='#'>Privacy Policy</a></span>
+				</td></tr></table>
 				
 				<br>
-				
+
 				<!-- DISCLAIMER 2 -->
-				<table border=0><tr>
-				<td width=30>
-					<input type='checkbox' CHECKED>
-				</td>
-				<td>
-					<span style='font-size:10pt;'>
-					After signing up for the newsletter, you will also receive occasional surveys and special offers from WHATEVER media and our partners via email.
-					We will not sell or distribute your phone and email address to any third party at any time.</span>
-				</td>
-				</tr></table>
+				<table border=0><tr><td width=30>
+				<input type='checkbox' CHECKED>
+				</td><td>
+				<span style='font-size:10pt;'>I would like to receive 
+				newsletters, product updates and special offers from 
+				WHATEVER media and WHATEVER's business partners.</span>
+				</td></tr></table>
 					
 				<br>
 
-				<input type=submit value='SUBMIT' style='width:150px;height:75px;'>
+				<button class="g-recaptcha" 
+				 data-sitekey="6Lc17b0ZAAAAAFJJt4JJZQY_gYGT4f90MmOiS4YC" 
+				 data-callback='onSubmit' 
+				 data-action='submit'
+				 style='width:150px;height:75px;'>SUBMIT</button>				
 
-				<img valign='bottom' width=280 src='https://raw.githubusercontent.com/wisemanhk/wisemanhk.github.io/master/campaign/img/googlecaptcha.gif'>
+				<img valign='bottom' width=280 src='img/googlecaptcha.gif'>
 			</td></tr>
 			
 		</table>
@@ -87,11 +101,6 @@
 
 <script language='JavaScript'>
 <!--
-// TODO: Replace with your project's config object. You can find this
-// by navigating to your project's console overview page
-// (https://console.firebase.google.com/project/your-project-id/overview)
-// and clicking "Add Firebase to your web app"
-
 var config = {
   apiKey: "AIzaSyBfHe8GEKRrCM5TA_MqlaZZsVshjjH7Q34",
   authDomain: "my-test-project-d5a38.firebaseapp.com",
@@ -112,6 +121,10 @@ var db = myFirebase.child("campaigndb");
 
 // Push our first recommendation to the end of the list and assign it a
 // unique ID automatically.
+
+function onSubmit(token) {
+	document.getElementById("campaign").submit();
+}
 
 function doSubmit(frm) {
 	var milliseconds = new Date().getTime();
