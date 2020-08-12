@@ -3,7 +3,13 @@
 <title>For my HK, We are READY~</title>
 <style>
 table, tr, td {
-  border: 1px solid black;
+	border: 1px solid black;
+}
+tr:nth-child(even) {
+	background: #CCC
+}
+tr:nth-child(odd) {
+	background: #FFF
 }
 </style>
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
@@ -13,12 +19,14 @@ table, tr, td {
 <img src='img/banner.jpg' style='position:absolute;top:0px;left:0px;z-Index:-1;'>
 <img src='img/logo.jpg' width='300' style='position:absolute;top:10px;left:10px;z-Index:2;'>
 <img src='img/crlogo.png' width='150' style='position:absolute;top:10px;left:330px;z-Index:3;'>
-<img src='img/applejuice.jpg' width='150' style='position:absolute;top:300px;left:50px;z-Index:4;'>
 
-<div id='content' style='position:absolute;top:310px;left:220px;z-Index:999;'>
+<div id='content' style='position:absolute;top:290px;left:20px;z-Index:999;'>
+	<span style='font-family:Helvetica;font-weight:14pt;'>Showing first 100 records:</span>
+	<br><br>
+	
 	<table id='tbl' cellspacing=5 cellpadding=5 style='border:1px solid black; border-collapse:collapse; font-family:Helvetica;font-size:9pt;'>
-	<tr style='font-weight:bold;'>
-		<td>Firebase ID</td>
+	<tr style='font-weight:bold; font-size:12pt;'>
+		<td><nobr>Firebase ID</nobr></td>
 		<td>UUID</td>
 		<td><nobr>Client Name</nobr></td>
 		<td><nobr>Email Address</nobr></td>
@@ -34,6 +42,8 @@ table, tr, td {
 	</tr>
 	</table>
 </div>
+
+<br><br><br><br>
 
 <script language='JavaScript'>
 <!--
