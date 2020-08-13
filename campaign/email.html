@@ -58,7 +58,8 @@ if(pos > 0) {
 }
 if(uuid.charAt(0)=='-') {
 	var myColor = '#000000'; //black
-	if(qrStyle==1 || qrStyle==2) myColor = '#f5a02a';
+	if(qrStyle==1 || qrStyle==2) myColor = '#8c5915';  
+	                             //#f5a02a <- matched logo orange
 
 	var qrcode = new QRCode(document.getElementById("qrcode"), {
 		text: uuid,
