@@ -53,6 +53,9 @@
   </style>
 </head>
 <body>
+  <img height=80 src='img/logo.jpg'>
+  &nbsp;&nbsp;&nbsp; 
+  <img height=80 src='img/crlogo.png'>
   <h1>掃描 QR 二位碼</h1>
   <div id="output" hidden style='font-size:14pt;'>
     <div id="outputMessage">No QR code detected.</div>
@@ -108,7 +111,8 @@
         canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
         var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
         var code = jsQR(imageData.data, imageData.width, imageData.height, {
-          inversionAttempts: "invertFirst",
+          inversionAttempts: "attemptBoth",
+		  //Usage: dontInvert,attemptBoth,invertFirst,onlyInvert
         });
         if (code) {
           drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
