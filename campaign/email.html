@@ -14,39 +14,111 @@
 
 
 <div style='position:absolute;top:310px;left:220px;z-Index:999;'>
-	<form name='campaign' action='thanks.html' method='POST' onSubmit='doSubmit(this);'> 
-		<table border=0 width=600 cellpadding=5 cellspacing=5 style='font-family:Helvetica;'>
-			<tr><td colspan=2 style='font-size:15pt;font-weight:bold;'>
-			請到時候帶同此電郵，出示給在場職員掃描 QR碼。
-			<br>
-			Please show this QRCode to our staff.
-			
-			<br><br>
-			
-			<!-- QR Code here -->
+	<table border=0 width=600 cellpadding=5 cellspacing=5 style='font-family:Helvetica;'>
+		<tr><td colspan=2 style='font-size:15pt;font-weight:bold;'>
+		請到時候帶同此電郵，出示給在場職員掃描 QR碼。
+		<br>
+		Please show this QRCode to our staff.
+		
+		<br><br>
+		
+		<!-- QR Codes -->
+		<div id='qrOuter' style='position:absolute; top:80px; left:40px; z-Index:1;'>
 			<div id="qrcode"></div>
-			<img width=38 style='position:absolute;top:176px;left:124px;' src='img/crlogo.png'>
-			</td></tr>
-		</table>
-	</form>
+		</div>
+		
+		<br><br>
+
+		<div style='position:absolute; top:380px; left:40px;'>
+			<span style='font-size:12pt;'>款式:</span>
+			<button onClick='qrCodeStyle(1);'>彩色1</button>
+			<button onClick='qrCodeStyle(2);'>彩色2</button>
+			<button onClick='qrCodeStyle(3);'>基本</button>
+			<button onClick='qrCodeStyle(4);'>最基本</button>
+		</div>
+		</td></tr>
+	</table>
 </div>
 
 <script type="text/javascript">
-var pos = location.href.lastIndexOf('#');
-var uuid = location.href.substring(pos+1);
+function qrCodeStyle(type) {
+	location.href = 'email.html#'+ uuid +'&t='+ type;
+	location.reload();
+}
 
-if(pos>0 && uuid.charAt(0)=='-') {
-	//new QRCode(document.getElementById("qrcode"), uuid); //simple
+//query string parsing
+var pos = location.href.lastIndexOf('#');
+var qstr = location.href.substring(pos+1).trim();
+var uuid = qstr;
+var qrStyle = 1; //default: fancy1
+pos = qstr.lastIndexOf('&t=');
+if(pos > 0) {
+	uuid = qstr.substring(0, pos).trim();
+	qrStyle = qstr.substring(pos+3).trim();
+}
+if(uuid.charAt(0)=='-') {
+	var myColor = '#000000'; //black
+	if(qrStyle==1 || qrStyle==2) myColor = '#f5a02a';
 
 	var qrcode = new QRCode(document.getElementById("qrcode"), {
 		text: uuid,
 		width:  256,
 		height: 256,
-		colorDark  : "#000000",
+		colorDark  : myColor,
 		colorLight : "#ffffff",
 		correctLevel : QRCode.CorrectLevel.H  
 		// Usage >> L:1,M:0,Q:3,H:2
 	});
+	
+	//process overlays
+	if(qrStyle==2 || qrStyle==3) {
+		var imgElm = document.createElement('IMG');
+		imgElm.setAttribute('src', 'img/crlogo.png');
+		imgElm.setAttribute('id', 'qrLogo');
+		imgElm.setAttribute('width', 36);
+		imgElm.setAttribute('height', 35);
+		imgElm.setAttribute('style', 'position:absolute; top:123px; left:114px; z-Index:999;');
+		document.getElementById('qrOuter').appendChild(imgElm);
+	}
+	else if(qrStyle==1) {
+		//middle juice logo
+		var imgElm = document.createElement('IMG');
+		imgElm.setAttribute('src', 'img/applejuice.jpg');
+		imgElm.setAttribute('id', 'qrLogo');
+		imgElm.setAttribute('width', 36);
+		imgElm.setAttribute('height', 100);
+		imgElm.setAttribute('style', 'position:absolute; top:79px; left:114px; z-Index:999;');
+		document.getElementById('qrOuter').appendChild(imgElm);
+
+		//QR corner logos (1of3)
+		imgElm = document.createElement('IMG');
+		imgElm.setAttribute('src', 'img/crlogo.png');
+		imgElm.setAttribute('id', 'qrCorner1');
+		imgElm.setAttribute('width', 28);
+		imgElm.setAttribute('height', 27);
+		imgElm.setAttribute('style', 'position:absolute; top:17px; left:17px; z-Index:999;');
+		document.getElementById('qrOuter').appendChild(imgElm);
+		
+		//QR corner logos (2of3)
+		imgElm = document.createElement('IMG');
+		imgElm.setAttribute('src', 'img/crlogo.png');
+		imgElm.setAttribute('id', 'qrCorner2');
+		imgElm.setAttribute('width', 28);
+		imgElm.setAttribute('height', 27);
+		imgElm.setAttribute('style', 'position:absolute; top:17px; left:211px; z-Index:999;');
+		document.getElementById('qrOuter').appendChild(imgElm);
+		
+		//QR corner logos (3of3)
+		imgElm = document.createElement('IMG');
+		imgElm.setAttribute('src', 'img/crlogo.png');
+		imgElm.setAttribute('id', 'qrCorner3');
+		imgElm.setAttribute('width', 28);
+		imgElm.setAttribute('height', 27);
+		imgElm.setAttribute('style', 'position:absolute; top:211px; left:17px; z-Index:999;');
+		document.getElementById('qrOuter').appendChild(imgElm);
+		
+	}
+	
 }
 </script>
 
