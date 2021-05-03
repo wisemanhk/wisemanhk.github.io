@@ -1,0 +1,10 @@
+.non-office-hour header.hero .container .float-right .call-btn span{
+    pointer-events:none;
+    color:#d9dbda;
+    border:0;
+}
+.non-office-hour .main .container .col-left .wrap-list .highlight .cta-call span{
+    pointer-events:none;
+    color:#d9dbda;
+    border:0;
+}
